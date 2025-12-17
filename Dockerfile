@@ -1,8 +1,10 @@
-FROM openjdk:8-jre-alpine
+FROM eclipse-temurin:11-jre-alpine
+
+WORKDIR /usr/app
+
+# Copy the built JAR into the image
+COPY build/libs/my-app-1.0-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
-COPY ./build/libs/my-app-1.0-SNAPSHOT.jar /usr/app/
-WORKDIR /usr/app
-
-ENTRYPOINT ["java", "-jar", "my-app-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
